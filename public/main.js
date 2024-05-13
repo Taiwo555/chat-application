@@ -15,7 +15,9 @@ messageForm.addEventListener('submit', (e)=>{
 
 socket.on("clients-total", (data)=>{
     clientsTotal.innerText = `Total clients ${data}`
-})
+}) //this code listens for server updates about the total connected clients and dynamically 
+//updates a UI element on the client-side to reflect that information
+
 
 function sendMessage(){
     if(messageInput.value === '') return
@@ -33,7 +35,9 @@ function sendMessage(){
 socket.on('chat-message', (data)=>{
     //console.log(data)
     addMessageToUI(false, data)
-})
+}) //this code listens for incoming chat messages from the server. 
+//When a message is received, it extracts the message data and calls another function (addMessageToUI) 
+//to handle displaying the message on the user interface
 
 function addMessageToUI(isOwnMessage, data){
     clearFeedback()
@@ -43,7 +47,9 @@ function addMessageToUI(isOwnMessage, data){
 </li>`
 
 messageContainer.innerHTML += element
-    
+    //this function dynamically creates HTML elements for messages, 
+//differentiates between the user's own messages and incoming messages, and adds them to the chat UI
+
 scrollTOBottom()
 
 }
@@ -77,7 +83,9 @@ socket.on('feedback',(data) =>{
     </p>`
 
  messageContainer.innerHTML += element
-})
+}) //This code displays incoming feedback messages 
+//(likely indicating typing status of other users) in the chat interface
+
 
 function clearFeedback(){
     document.querySelectorAll('li.message-feedback').forEach(element=>{
